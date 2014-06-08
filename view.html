@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Frame Me!</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-sm-4"></div>
+      
+      <div class="col-sm-3">
+        <div class="page-header">
+          
+            <h1>
+            
+            <span class="label label-info">Welcome!</span>
+            <a href="index.html"><button type="button" class="btn btn-danger btn-lg lft" ><span class="glyphicon glyphicon-home"></span></button></a>
+            </h1>
+        </div>
+      </div>
+      
+      <div class="col-sm-4">
+      
+    </div>
+    </div>
+        
+    <div class="container">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-9">
+        <div class="container">
+
+          <div class="canvas">
+
+           <canvas width="843" height="504" id="canvas"></canvas>
+            
+          
+<script type="text/javascript">
+
+  var map = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    map[key] = value;
+  });
+
+   var frameh=351;
+   var framew=220;
+   var left=128;
+   var top1=77;
+
+if (map['frame']=="one")
+{
+ frameh=353;
+   framew=234;
+   left=119;
+   top1=73;
+}
+else if (map['frame']=="two")
+{
+   frameh=364;
+  framew=223;
+   left=128;
+   top1=70;
+}
+else if (map['frame']=="three")
+{
+   frameh=363;
+   framew=225;
+   left=128;
+   top1=72;
+}
+else if (map['frame']=="four")
+{
+   frameh=369;
+   framew=236;
+   left=112;
+   top1=72;
+}
+
+
+
+
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var img1 = loadImage( 'frame/'+map['frame']+'.png' , main);
+
+
+
+
+//var img2 = loadImage(<?php echo '"'.$_SESSION["name"].'"'; ?>, main);
+
+//var img2=loadImage(localStorage.getItem('fpic'), main);
+
+var dataURL = localStorage.getItem('fpic');
+var img2 = new Image;
+img2.src = dataURL;
+img2.onload=function()
+{
+   ctx.drawImage(img2,sessionStorage.x,sessionStorage.y,sessionStorage.w,sessionStorage.h,left,top1,framew,frameh);
+};
+
+
+
+
+
+var img3 = loadImage("slogo.png", main);
+
+var imagesLoaded = 0;
+function main() {
+    imagesLoaded += 1;
+
+  //  if(imagesLoaded == 3)
+    {
+        // composite now
+       // ctx.drawImage(img2,sessionStorage.x,sessionStorage.y,sessionStorage.w,sessionStorage.h,left,top,framew,frameh);
+     ctx.drawImage(img1, 0, 0);
+        ctx.drawImage(img3,290,79,60,30);
+        }
+
+
+var str=sessionStorage.caption;
+var pos,str1,str2;
+
+
+  pos=str.indexOf(" ",18);
+str1=str.substring(0,pos);
+str2=str.substring(pos+1,str.length);
+
+ctx.font = '19pt Octavian-MT';
+ctx.fillStyle = '482115';
+      ctx.fillText(str1, 537, 320);
+
+if(pos==-1)
+      ctx.fillText(str2, 537, 320);
+      else if(pos!=-1)
+      ctx.fillText(str2, 537, 350);
+            
+
+
+}
+
+function loadImage(src, onload) {
+    
+    var img = new Image();
+    
+    img.onload = onload;
+    img.src = src;
+
+    return img;
+}
+
+
+
+function toImage(returnType) 
+{
+  var dataURL = document.getElementById('canvas').toDataURL("image/png");
+   //dataURL = dataURL.replace("image/png", "image/octet-stream");
+      document.location.href = dataURL;
+    }
+
+</script>
+
+
+
+          </div>
+      </div>
+          
+        
+          <p>
+          
+          <div col-sm-2></div>
+                     
+             <div class="btn-group center5">
+             <p>
+              <button type="button" class="btn btn-default btn-lg custom"><a href="view.html?frame=default">Default</a></button>
+              <button type="button" class="btn btn-default btn-lg custom"><a href="view.html?frame=one">Frame 1</a></button>
+              <button type="button" class="btn btn-default btn-lg custom"><a href="view.html?frame=two">Frame 2</a></button>
+              <button type="button" class="btn btn-default btn-lg custom"><a href="view.html?frame=three">Frame 3</a></button>
+              <button type="button" class="btn btn-default btn-lg custom"><a href="view.html?frame=four">Frame 4</a></button>
+              </p>
+              
+            </div>
+            
+          
+        <a href="javascript:void(0);" onclick="toImage();return false;"> <button type="button" class="btn btn-success btn-lg lft"> Download </button></a>
+     </p>
+      </div>
+   <!--   <div class="col-sm-3"></div>
+   --> </div>
+
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
